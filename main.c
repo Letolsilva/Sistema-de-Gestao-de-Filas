@@ -21,11 +21,12 @@ int main() {
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
+        printf("------------------------------------------ \n");
         getchar(); 
 
         switch (opcao) {
             case 1: {
-                // Cadastrar cliente
+                
                 Cliente* novo_cliente = cadastrarCliente(); 
                 if (novo_cliente != NULL) {
                     int num_caixa;
@@ -58,11 +59,11 @@ int main() {
                 int num_caixa, acao;
                 printf("Escolha o número do caixa (1-5): ");
                 scanf("%d", &num_caixa);
-                getchar(); 
+                getchar();
 
                 printf("Ação (1 = Abrir, 2 = Fechar): ");
                 scanf("%d", &acao);
-                getchar(); 
+                getchar();
 
                 switch (acao) {
                     case 1:  // Abrir caixa
@@ -77,20 +78,29 @@ int main() {
                         if (!caixas[num_caixa - 1].aberto) {
                             printf("O caixa %d já está fechado!\n", num_caixa);
                         } else {
-                            // Realoca clientes para outro caixa aberto
-                            int caixa_aberto = -1;
+                            // Contar quantos caixas estão abertos
+                            int caixas_abertos = 0;
                             for (int i = 0; i < NUM_CAIXAS; i++) {
-                                if (caixas[i].aberto && i != (num_caixa - 1)) {
-                                    caixa_aberto = i;
-                                    break;
+                                if (caixas[i].aberto) {
+                                    caixas_abertos++;
                                 }
                             }
-                            if (caixa_aberto != -1) {
-                                realocarClientes(caixas, num_caixa - 1, caixa_aberto);
-                                caixas[num_caixa - 1].aberto = 0;  // Fecha o caixa
-                                printf("Caixa %d fechado com sucesso!\n", num_caixa);
+
+                            // Se só houver um caixa aberto, impedir o fechamento
+                            if (caixas_abertos == 1) {
+                                printf("Não é possível fechar o caixa %d porque é o único caixa aberto.\n", num_caixa);
                             } else {
-                                printf("Não há caixas abertos para realocar os clientes.\n");
+                                // Verificar se o caixa fechado tem clientes
+                                int num_clientes_no_caixa = contarClientesNoCaixa(&caixas[num_caixa - 1]);
+                                if (num_clientes_no_caixa > 0) {
+                                    // Realoca clientes para outro caixa aberto
+                                    realocarClientes(caixas, num_caixa - 1, NUM_CAIXAS);
+                                    printf("Clientes realocados do caixa %d.\n", num_caixa);
+                                }
+
+                                // Fechar o caixa
+                                caixas[num_caixa - 1].aberto = 0;  
+                                printf("Caixa %d fechado com sucesso!\n", num_caixa);
                             }
                         }
                         break;
@@ -99,6 +109,7 @@ int main() {
                 }
                 break;
             }
+
             case 4: {
                 // Imprimir a lista de clientes em espera
                 imprimirClientesEmEspera(caixas, NUM_CAIXAS);

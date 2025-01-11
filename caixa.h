@@ -14,6 +14,7 @@ typedef struct Caixa {
 void inicializarCaixas(Caixa* caixas, int num_caixas);
 void adicionarClienteFila(Caixa* caixas, int num_caixa, Cliente* cliente);
 Cliente* atenderCliente(Caixa* caixas, int num_caixa);
+int contarClientesNoCaixa(Caixa* caixas);
 void realocarClientes(Caixa* caixas, int num_caixa_fechado, int num_caixa_aberto);
 void imprimirClientesEmEspera(Caixa* caixas, int num_caixas);
 void imprimirStatusCaixas(Caixa* caixas, int num_caixas); 

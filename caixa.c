@@ -42,17 +42,48 @@ Cliente* atenderCliente(Caixa* caixas, int num_caixa) {
     return NULL;
 }
 
-// Realoca os clientes de um caixa fechado para outro caixa aberto
-void realocarClientes(Caixa* caixas, int num_caixa_fechado, int num_caixa_aberto) {
-    printf("Realocando clientes do caixa %d para o caixa %d...\n", num_caixa_fechado + 1, num_caixa_aberto + 1);
+// Função para contar o número de clientes em um caixa
+int contarClientesNoCaixa(Caixa* caixa) {
+    int num_clientes = 0;
     for (int prioridade = 0; prioridade < 3; prioridade++) {
-        while (caixas[num_caixa_fechado].fila[prioridade].cabeca != NULL) {
-            Cliente* cliente = atenderClienteFilaPrioridade(&caixas[num_caixa_fechado].fila[prioridade]);
-           
-            adicionarClienteFila(caixas, num_caixa_aberto, cliente);
+        Cliente* cliente = caixa->fila[prioridade].cabeca;
+        while (cliente != NULL) {
+            num_clientes++;
+            cliente = cliente->prox;
         }
     }
+    return num_clientes;
 }
+
+// Realoca os clientes de um caixa fechado para o caixa com menos clientes
+void realocarClientes(Caixa* caixas, int num_caixa_fechado, int num_caixas) {
+    // Encontrar o caixa aberto com o menor número de clientes
+    int caixa_com_menos_clientes = -1;
+    int menor_numero_de_clientes = __INT_MAX__; // Usar um valor máximo
+
+    for (int i = 0; i < num_caixas; i++) {
+        if (caixas[i].aberto && i != num_caixa_fechado) {
+            int num_clientes = contarClientesNoCaixa(&caixas[i]);
+            if (num_clientes < menor_numero_de_clientes) {
+                menor_numero_de_clientes = num_clientes;
+                caixa_com_menos_clientes = i;
+            }
+        }
+    }
+
+    if (caixa_com_menos_clientes != -1) {
+        printf("Realocando clientes do caixa %d para o caixa %d...\n", num_caixa_fechado + 1, caixa_com_menos_clientes + 1);
+        for (int prioridade = 0; prioridade < 3; prioridade++) {
+            while (caixas[num_caixa_fechado].fila[prioridade].cabeca != NULL) {
+                Cliente* cliente = atenderClienteFilaPrioridade(&caixas[num_caixa_fechado].fila[prioridade]);
+                adicionarClienteFila(caixas, caixa_com_menos_clientes, cliente);
+            }
+        }
+    } else {
+        printf("Não há caixas abertos para realocar os clientes.\n");
+    }
+}
+
 
 // Imprime a lista de clientes em espera para todos os caixas
 void imprimirClientesEmEspera(Caixa* caixas, int num_caixas) {
