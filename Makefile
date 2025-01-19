@@ -1,32 +1,40 @@
-# Nome do executável
-TARGET = supermercado
+CXX	     := -gcc
+CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
+LDFLAGS	 := -lm
+BUILD 	 := ./build
+OBJ_DIR  := $(BUILD)/objects
+APP_DIR  := $(BUILD)/
+TARGET   := app
+INCLUDE  := -Iinclude/
+SRC			 := $(wildcard src/*.c)
 
-# Compilador
-CC = gcc
+OBJECTS := $(SRC:%.c=$(OBJ_DIR)/%.o)
 
-# Flags de compilação
-CFLAGS = -Wall -g
+all: build $(APP_DIR)/$(TARGET)
 
-# Arquivos fonte
-SRC = main.c cliente.c caixa.c filaPrioridade.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
-# Arquivos de cabeçalho
-HEADERS = cliente.h caixa.h filaPrioridade.h
+$(APP_DIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -o $(APP_DIR)/$(TARGET) $(OBJECTS)
 
-# Regra padrão para compilar o projeto
-all: $(TARGET)
+.PHONY: all build clean debug release run
 
-# Regra para criar o executável
-$(TARGET): $(SRC) $(HEADERS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+build:
+	@mkdir -p $(APP_DIR)
+	@mkdir -p $(OBJ_DIR)
 
-# Regra para limpar os arquivos de compilação
+debug : CXXFLAGS += -DDEBUG -g
+debug: all
+
+release: CXXFLAGS += -O3
+release: all
+
 clean:
-	rm -f $(TARGET)
+	-@rm -rvf $(OBJ_DIR)/*
+	-@rm -rvf $(APP_DIR)/*
 
-# Regra para recompilar o projeto
-rebuild: clean all
-
-# Regra para compilar e executar o projeto
-run: all
-	./$(TARGET)
+run:
+		./$(BUILD)/$(TARGET)
