@@ -1,5 +1,13 @@
-# Sistema de Gestão de Filas
+<h1 align="center" font-size="200em"><b>Sistema de Gestão de Filas de supermecado</b></h1>
 
+<div align = "center" >
+<!-- imagem -->
+
+[![requirement](https://img.shields.io/badge/IDE-Visual%20Studio%20Code-informational)](https://code.visualstudio.com/docs/?dv=linux64_deb)
+![Make](https://img.shields.io/badge/Compilacao-Make-orange)
+![Linguagem](https://img.shields.io/badge/Linguagem-C%2B%2B-blue)
+
+</div>
 ## Introdução
 
 Este é um sistema desenvolvido em linguagem C para a gestão de filas prioritárias em caixas de atendimento. Ele permite o cadastro e atendimento de clientes com diferentes níveis de prioridade, abertura e fechamento de caixas, realocação de clientes e exibição de relatórios detalhados.
@@ -97,7 +105,6 @@ Os arquivos de cabeçalho (`.h`) contêm definições de estruturas e declaraç�
   4. **Imprimir a Lista de Clientes em Espera**: Veja todos os clientes e suas prioridades.
   5. **Imprimir Status do Caixa**: Exibe os caixas abertos, fechados e a quantidade de clientes em cada um.
   0. **Sair**: Finaliza o sistema.
-
 
 ## Tratamento de Erros
 - Validação de entradas (nome, CPF, número do caixa, ação escolhida).
