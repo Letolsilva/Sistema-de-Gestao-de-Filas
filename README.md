@@ -41,9 +41,53 @@ O sistema é projetado para que clientes com maior prioridade sejam atendidos pr
 - Gerencia o cadastro e validação de clientes.
 - Implementa funções auxiliares para validar nomes e CPFs.
 
-### Arquivos de Cabeçalho
-- `caixa.h` e `cliente.h` contêm as definições de structs e protótipos das funções.
+### Arquivo `filaPrioridade.c`
+- Implementa a fila de prioridade, que organiza clientes de acordo com seus níveis de prioridade (1 = alta, 2 = média, 3 = baixa).
 
+## Arquivos de Cabeçalho
+
+Os arquivos de cabeçalho (`.h`) contêm definições de estruturas e declarações de funções.
+
+### Arquivo `caixa.h`
+
+- **`Caixa`**:
+  - `id`: Identificação do caixa.
+  - `aberto`: Indica se o caixa está aberto (1) ou fechado (0).
+  - `fila`: Array de filas para diferentes níveis de prioridade (alta, média e baixa).
+  
+**Funções Declaradas:**
+- Inicialização de caixas.
+- Adição e atendimento de clientes.
+- Reorganização de clientes em caso de fechamento de caixas.
+- Impressão do estado e das filas de cada caixa.
+
+### Arquivo `cliente.h`
+
+- **`Cliente`**:
+  - `nome`: Nome do cliente.
+  - `cpf`: Número de CPF do cliente.
+  - `prioridade`: Nível de prioridade (1 = alta, 2 = média, 3 = baixa).
+  - `num_itens`: Quantidade de itens do cliente.
+  - `prox`: Ponteiro para o próximo cliente na fila.
+
+**Funções Declaradas:**
+- Cadastro de clientes.
+- Validação de dados como CPF e nome.
+
+### Arquivo `filaPrioridade.h`
+
+- **`FilaPrioridade`**:
+  - Contém um ponteiro para o cliente com maior prioridade na fila.
+
+**Funções Declaradas:**
+- **`inicializarFila`**: Prepara a fila para uso.
+- **`adicionarClienteFilaPrioridade`**: Insere um cliente na fila.
+- **`atenderClienteFilaPrioridade`**: Remove e retorna o cliente de maior prioridade.
+
+## Sobre Filas Prioritárias
+- Cada caixa possui três filas separadas por prioridade (1 = mais alta, 3 = mais baixa).
+- Clientes de maior prioridade são atendidos primeiro.
+- Em caso de caixas fechados, os clientes são redistribuídos de forma equitativa para outros caixas abertos.
 
 ### Uso do Menu
 - Escolha entre as opções do menu:
@@ -54,10 +98,6 @@ O sistema é projetado para que clientes com maior prioridade sejam atendidos pr
   5. **Imprimir Status do Caixa**: Exibe os caixas abertos, fechados e a quantidade de clientes em cada um.
   0. **Sair**: Finaliza o sistema.
 
-## Sobre Filas Prioritárias
-- Cada caixa possui três filas separadas por prioridade (1 = mais alta, 3 = mais baixa).
-- Clientes de maior prioridade são atendidos primeiro.
-- Em caso de caixas fechados, os clientes são redistribuídos de forma equitativa para outros caixas abertos.
 
 ## Tratamento de Erros
 - Validação de entradas (nome, CPF, número do caixa, ação escolhida).
