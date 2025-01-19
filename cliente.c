@@ -9,22 +9,26 @@
 int validaNome(const char *nome) {
     for (int i = 0; nome[i] != '\0'; i++) {
         if (!isalpha(nome[i]) && nome[i] != ' ') {
-            return 0; // Retorna 0 se houver algo que não seja letra ou espaço
+            return 0; 
         }
     }
-    return 1; // Retorna 1 se for válido
+    return 1; 
 }
 
 int validaCPF(const char *cpf) {
-    for (int i = 0; cpf[i] != '\0'; i++) {
+    int len = strlen(cpf);
+    if (len != 11) {
+        return 0;
+    }
+
+    for (int i = 0; i < len; i++) {
         if (!isdigit(cpf[i])) {
-            return 0; // Retorna 0 se não for um número
+            return 0;
         }
     }
-    return 1; // Retorna 1 se for válido
+    return 1;
 }
 
-// Função para limpar o buffer de entrada
 void limparBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -37,7 +41,6 @@ Cliente* cadastrarCliente() {
         exit(1);
     }
 
-    // Validação do nome
     do {
         printf("Digite o nome do cliente: ");
         fgets(novo->nome, MAX_NOME, stdin);
@@ -53,14 +56,14 @@ Cliente* cadastrarCliente() {
     // Validação do CPF
     char cpfStr[12];
     do {
-        printf("Digite o CPF (somente números): ");
+        printf("Digite o CPF (11 números): ");
         fgets(cpfStr, sizeof(cpfStr), stdin);
         size_t len = strlen(cpfStr);
         if (len > 0 && cpfStr[len - 1] == '\n') {
             cpfStr[len - 1] = '\0';
         }
         if (!validaCPF(cpfStr)) {
-            printf("O CPF deve conter apenas números. Tente novamente.\n");
+            printf("O CPF deve conter exatamente 11 números. Tente novamente.\n");
         }
     } while (!validaCPF(cpfStr));
     novo->cpf = atol(cpfStr);
@@ -79,7 +82,6 @@ Cliente* cadastrarCliente() {
         limparBuffer();
     } while (novo->prioridade < 1 || novo->prioridade > 3);
 
-    // Validação do número de itens no carrinho
     do {
         printf("Digite o número de itens no carrinho: ");
         if (scanf("%d", &novo->num_itens) != 1) {

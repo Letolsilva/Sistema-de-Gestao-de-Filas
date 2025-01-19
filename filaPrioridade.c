@@ -23,7 +23,7 @@ void adicionarClienteFilaPrioridade(FilaPrioridade* fila, Cliente* cliente) {
 // Atende o cliente com maior prioridade (remove da fila e retorna)
 Cliente* atenderClienteFilaPrioridade(FilaPrioridade* fila) {
     if (fila->cabeca == NULL) {
-        printf("Nenhum cliente na fila!\n");
+        // printf("Nenhum cliente na fila!\n");
         return NULL;
     }
 

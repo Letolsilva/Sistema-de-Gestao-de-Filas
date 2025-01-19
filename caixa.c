@@ -38,7 +38,7 @@ Cliente* atenderCliente(Caixa* caixas, int num_caixa) {
         }
     }
     
-    printf("Nenhum cliente na fila do caixa %d!\n", num_caixa);
+    // printf("Nenhum cliente na fila do caixa %d!\n", num_caixa);
     return NULL;
 }
 

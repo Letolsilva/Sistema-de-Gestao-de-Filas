@@ -13,6 +13,7 @@ int main() {
 
     int opcao;
     do {
+        printf("--------- Sistema de gestão de fila de supermecado ----------");
         printf("\n1. Cadastrar Cliente\n");
         printf("2. Atender Cliente\n");
         printf("3. Abrir ou Fechar um Caixa\n");
