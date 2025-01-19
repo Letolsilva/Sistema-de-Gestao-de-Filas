@@ -18,7 +18,7 @@ int main() {
         printf("2. Atender Cliente\n");
         printf("3. Abrir ou Fechar um Caixa\n");
         printf("4. Imprimir a Lista de Clientes em Espera\n");
-        printf("5. Imprimir status do caixa\n");
+        printf("5. Imprimir status dos caixa\n");
         printf("0. Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);

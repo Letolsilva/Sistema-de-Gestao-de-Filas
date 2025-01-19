@@ -94,7 +94,7 @@ void imprimirClientesEmEspera(Caixa* caixas, int num_caixas) {
             if (cliente != NULL) {
                 printf("Prioridade %d:\n", prioridade + 1);
                 while (cliente != NULL) {
-                    printf("  - Nome: %s, CPF: %ld\n", cliente->nome, cliente->cpf);
+                    printf("  - Nome: %s, CPF: %ld, Num itens: %d\n", cliente->nome, cliente->cpf, cliente->num_itens);
                     cliente = cliente->prox;
                 }
             }
