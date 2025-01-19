@@ -8,11 +8,12 @@
 ![Linguagem](https://img.shields.io/badge/Linguagem-C%2B%2B-blue)
 
 </div>
-## Introdução
+
+### Introdução
 
 Este é um sistema desenvolvido em linguagem C para a gestão de filas prioritárias em caixas de atendimento. Ele permite o cadastro e atendimento de clientes com diferentes níveis de prioridade, abertura e fechamento de caixas, realocação de clientes e exibição de relatórios detalhados.
 
-O sistema é projetado para que clientes com maior prioridade sejam atendidos primeiro e que o fluxo nas filas seja mantido mesmo em casos de fechamento de caixas.
+O sistema foi projetado para garantir que os clientes com maior prioridade sejam atendidos primeiro, mantendo o fluxo nas filas mesmo em situações de fechamento de caixas. Inicialmente, o sistema conta com 5 caixas disponíveis e todos abertos. É possível alterar o número de caixas na função main, modificando a variável NUM_CAIXAS.
 
 ## Funcionalidades Principais
 
@@ -103,13 +104,32 @@ Os arquivos de cabeçalho (`.h`) contêm definições de estruturas e declaraç�
   2. **Atender Cliente**: Selecione um caixa para atender o próximo cliente na fila.
   3. **Abrir ou Fechar um Caixa**: Gerencie o status dos caixas.
   4. **Imprimir a Lista de Clientes em Espera**: Veja todos os clientes e suas prioridades.
-  5. **Imprimir Status do Caixa**: Exibe os caixas abertos, fechados e a quantidade de clientes em cada um.
+  5. **Imprimir Status dos Caixa**: Exibe os caixas abertos, fechados e a quantidade de clientes em cada um.
   0. **Sair**: Finaliza o sistema.
 
 ## Tratamento de Erros
 - Validação de entradas (nome, CPF, número do caixa, ação escolhida).
 - Impede o fechamento de todos os caixas.
 - Exibe mensagens claras ao usuário para corrigir erros de entrada.
+
+## Resultados
+
+Após cadastrar alguns clientes, selecionei a opção 4 para exibir a lista de clientes em espera. O sistema apresenta os clientes com suas respectivas prioridades e caixas atribuídos:
+
+![image](https://github.com/user-attachments/assets/0de9a8e8-b054-4a06-86a4-5dab47c98a74)
+
+Em seguida, fechei o caixa de número 2. O sistema redistribuiu os clientes para a próxima fila com menos clientes. Adicionando o cliente João Vitor com prioridade 1 à fila de um caixa disponível:
+
+![image](https://github.com/user-attachments/assets/dc822c8c-1182-4343-8cb0-851c682023a8)
+
+Depois, procedi com o atendimento dos clientes atribuídos ao caixa 1. O sistema atendeu o cliente de acordo com sua prioridade:
+
+![image](https://github.com/user-attachments/assets/b8a311fc-310c-45e8-8704-9653b6c3efd3)
+
+Por fim, após fechar o caixa 1, utilizei a função para imprimir o status atual dos caixas. O sistema exibiu quais caixas estavam abertos, fechados e o número de clientes em cada fila:
+
+![image](https://github.com/user-attachments/assets/5776e1f9-aad8-4567-9780-93b9be3b111f)
+
 
 ## Como Rodar o Sistema
 
