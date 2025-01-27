@@ -7,16 +7,16 @@
 typedef struct Caixa {
     int id;                     // Número de identificação do caixa
     int aberto;                 // 1 = aberto, 0 = fechado
-    FilaPrioridade fila[3];    // Filas separadas para prioridades 1, 2 e 3
+    FilaPrioridade fila;        // Única fila para o caixa, com atendimento baseado em prioridade
 } Caixa;
 
-// Funções para gerenciar o caixa e as filas
+// Funções para gerenciar o caixa e a fila
 void inicializarCaixas(Caixa* caixas, int num_caixas);
 void adicionarClienteFila(Caixa* caixas, int num_caixa, Cliente* cliente);
 Cliente* atenderCliente(Caixa* caixas, int num_caixa);
-int contarClientesNoCaixa(Caixa* caixas);
-void realocarClientes(Caixa* caixas, int num_caixa_fechado, int num_caixa_aberto);
+int contarClientesNoCaixa(Caixa* caixa);
+void realocarClientes(Caixa* caixas, int num_caixa_fechado, int num_caixas);
 void imprimirClientesEmEspera(Caixa* caixas, int num_caixas);
-void imprimirStatusCaixas(Caixa* caixas, int num_caixas); 
+void imprimirStatusCaixas(Caixa* caixas, int num_caixas);
 
 #endif

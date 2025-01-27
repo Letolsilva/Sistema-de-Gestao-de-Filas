@@ -17,7 +17,7 @@ int validaNome(const char *nome) {
 
 int validaCPF(const char *cpf) {
     int len = strlen(cpf);
-    if (len != 11) {
+    if (len != 1) {
         return 0;
     }
 
@@ -66,7 +66,7 @@ Cliente* cadastrarCliente() {
             printf("O CPF deve conter exatamente 11 números. Tente novamente.\n");
         }
     } while (!validaCPF(cpfStr));
-    novo->cpf = atol(cpfStr);
+    novo->cpf = atol(cpfStr); //string para numero
 
     // Validação da prioridade
     do {
