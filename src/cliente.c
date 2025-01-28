@@ -17,7 +17,7 @@ int validaNome(const char *nome) {
 
 int validaCPF(const char *cpf) {
     int len = strlen(cpf);
-    if (len != 1) {
+    if (len != 11) {
         return 0;
     }
 
