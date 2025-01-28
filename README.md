@@ -94,7 +94,7 @@ Os arquivos de cabeçalho (`.h`) contêm definições de estruturas e declaraç�
 - **`atenderClienteFilaPrioridade`**: Remove e retorna o cliente de maior prioridade.
 
 ## Sobre Filas Prioritárias
-- Cada caixa possui três filas separadas por prioridade (1 = mais alta, 3 = mais baixa).
+- Cada caixa possui uma fila de prioridade.
 - Clientes de maior prioridade são atendidos primeiro.
 - Em caso de caixas fechados, os clientes são redistribuídos de forma equitativa para outros caixas abertos.
 
